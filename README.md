@@ -23,8 +23,9 @@ This example runs the [plumber.io](https://www.rplumber.io/) package and loads a
 6. `heroku open -a limitless-eyrie-26993`    
   
   
-  make run // to run locally docker desktop must be running
-  note: throw error for missing params instead of defaults
+  `make run` to run locally docker desktop must be running  
+  note: should throw error for missing params instead of defaults
+
 
 ## To Do
 
