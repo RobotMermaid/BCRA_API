@@ -12,9 +12,19 @@ This example runs the [plumber.io](https://www.rplumber.io/) package and loads a
 6. Open `http://localhost:8000/absolute.risk`
 7. It will return response from shimmed absolute risk
 
-## Issues
-
-1. Not able to switch the input data types based on the data input.
+## Docker
+[heroku instructions](https://devcenter.heroku.com/articles/container-registry-and-runtime)
+1. `make build`
+2. `heroku container:login`  heroku login
+3. `heroku create`  from dockerfile root level  
+~ to add changes or version skip login and create steps ~
+4. `heroku container:push web -a limitless-eyrie-26993`   needs version option here
+5. `heroku container:release web -a limitless-eyrie-26993` 
+6. `heroku open -a limitless-eyrie-26993`    
+  
+  
+  make run // to run locally docker desktop must be running
+  note: throw error for missing params instead of defaults
 
 ## To Do
 
@@ -28,14 +38,3 @@ This example runs the [plumber.io](https://www.rplumber.io/) package and loads a
 
 - [Nginx Docker Reverse Proxy](https://www.freecodecamp.org/news/docker-nginx-letsencrypt-easy-secure-reverse-proxy-40165ba3aee2/)
 
-make build   
-https://devcenter.heroku.com/articles/container-registry-and-runtime
-heroku container:login // heroku login
-heroku create // from dockerfile root level
-//to change verion these steps only
-heroku container:push web -a name_of_heroku_container // needs version option here
-heroku container:release web -a limitless-eyrie-26993 
-heroku open -a limitless-eyrie-26993    
-needs a version system
-
-note: throw error for missing params instead of defaults

@@ -36,7 +36,7 @@ bash: ## Runs bash in Docker must remove ENTRYPOINT in Dockerfile and rebuild fi
 	docker run -it bcra:$(VERSION) bash
 
 run: ## run plumber port 8000, remove -d to debug inside docker,  stop in new terminal
-	docker run --rm -d -p 8000:8000 -e PORT=8000 --name plumber bcra:$(VERSION)
+	docker run --rm -p 8000:8000 -e PORT=8000 --name plumber bcra:$(VERSION)
 
 stop: ## Stops the image, run when using bash in new terminal
 	docker container kill plumber

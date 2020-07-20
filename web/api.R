@@ -72,18 +72,39 @@ function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=2
 #* @param Raw_Ind
 #* @param Avg_white
 #* @get /check.summary
-function(data="exampledata.rda", Raw_Ind=1, Avg_White=0) {
-    attach(file.path("..","data",data))
-    check.summary(data.frame(exampledata), Raw_Ind, Avg_White)
+function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1, Avg_White=0) {
+    check.summary(data.frame(ID=id,
+                             T1=as.numeric(age),
+                             T2=as.numeric(age)+5,
+                             N_Biop=as.integer(biopsies),
+                             HypPlas=ifelse(as.integer(biopsies) == 0 |
+                                              as.integer(biopsies) == 99,
+                                            99,as.integer(hyperplasia)),
+                             AgeMen=as.numeric(menstruation),
+                             Age1st=as.numeric(first_birth),
+                             N_Rels=as.numeric(relatives),
+                             Race =as.integer(race)), Raw_Ind, Avg_White
+    )
 }
 
 #* Risk Summary
 #* @param data_name The template data name
 #* @param Raw_Ind
 #* @get /risk.summary
-function(data="exampledata.rda", Raw_Ind=1) {
-    attach(file.path("..","data",data))
-    risk.summary(data.frame(exampledata), Raw_Ind)
+function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1) {
+    #attach(file.path("..","data",data))
+    risk.summary(data.frame(ID=id,
+                            T1=as.numeric(age),
+                            T2=as.numeric(age)+5,
+                            N_Biop=as.integer(biopsies),
+                            HypPlas=ifelse(as.integer(biopsies) == 0 |
+                                             as.integer(biopsies) == 99,
+                                           99,as.integer(hyperplasia)),
+                            AgeMen=as.numeric(menstruation),
+                            Age1st=as.numeric(first_birth),
+                            N_Rels=as.numeric(relatives),
+                            Race =as.integer(race)), Raw_Ind
+    )
 }
 
 
