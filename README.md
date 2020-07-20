@@ -27,3 +27,15 @@ This example runs the [plumber.io](https://www.rplumber.io/) package and loads a
 ## Reverse Proxy for HTTPS
 
 - [Nginx Docker Reverse Proxy](https://www.freecodecamp.org/news/docker-nginx-letsencrypt-easy-secure-reverse-proxy-40165ba3aee2/)
+
+make build   
+https://devcenter.heroku.com/articles/container-registry-and-runtime
+heroku container:login // heroku login
+heroku create // from dockerfile root level
+//to change verion these steps only
+heroku container:push web -a name_of_heroku_container // needs version option here
+heroku container:release web -a limitless-eyrie-26993 
+heroku open -a limitless-eyrie-26993    
+needs a version system
+
+note: throw error for missing params instead of defaults

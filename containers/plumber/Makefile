@@ -12,20 +12,20 @@ help: ## This help.
 .DEFAULT_GOAL := help
 
 # https://www.otaqui.com/blog/1421/using-the-contents-of-a-file-as-a-variable-in-a-makefile/index.html
-VERSION := $(shell cat app/version.txt)
+VERSION := $(shell cat ../../version.txt)
 
 app-clean: ## Cleans out the app folder 
 	@echo "clear out app/ folder"
-	rm -rf app/*
+	rm -rf app
 
 version: 	
 	@echo $(VERSION)
 	
-copy-src: app-clean ## Copy the latest source to the app foler
+copy-src: app-clean ## Copy the latest source to the app folder (version is to keep in sync docker/code)
 	@echo "copy source files into app/ folder"
+	mkdir app
 	cp ../../version.txt app/
 	cp ../../run.sh app/
-	cp -r ../../R app/
 	cp -r ../../web app/
 
 build: copy-src ## ALWAYs build for run or after any changes
