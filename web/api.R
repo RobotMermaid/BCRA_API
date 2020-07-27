@@ -12,6 +12,7 @@ function(req){
 
 #' Absolute Risk
 #' @post /absolute.risk
+#' @get /absolute.risk
 #' @param id
 #' @param age
 #' @param biopsies
@@ -22,7 +23,7 @@ function(req){
 #' @param race
 #' @param Raw_Ind
 #' @param Avg_white
-#' @get /absolute.risk
+
 #' all params need to be there or bad result
 function(req, age=35, biopsies=1, hyperplasia=1, menstruation=1, first_birth=1, relatives=1, race=1, Raw_Ind=1, Avg_White=1) {
     cat(" age::", age, biopsies, hyperplasia, menstruation, first_birth, relatives, race, Raw_Ind, Avg_White)
@@ -39,7 +40,9 @@ function(req, age=35, biopsies=1, hyperplasia=1, menstruation=1, first_birth=1, 
                              Race =as.integer(race)), Raw_Ind, Avg_White
     )
 }
-#* Relative Risk 
+#* Relative Risk
+#* @get /relative.risk
+#* @post /relative.risk
 #* @param id
 #* @param age
 #* @param biopsies
@@ -49,7 +52,7 @@ function(req, age=35, biopsies=1, hyperplasia=1, menstruation=1, first_birth=1, 
 #* @param relatives
 #* @param race
 #* @param Raw_Ind
-#* @get /relative.risk
+
 function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1) {
     input_df <- data.frame(ID=id,
                              T1=as.numeric(age),
@@ -68,10 +71,12 @@ function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=2
 }
 
 #* Check Summary
+#* @get /check.summary
+#* @post /check.summary
 #* @param data_name The template data name
 #* @param Raw_Ind
 #* @param Avg_white
-#* @get /check.summary
+
 function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1, Avg_White=0) {
     check.summary(data.frame(ID=id,
                              T1=as.numeric(age),
@@ -88,9 +93,11 @@ function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=2
 }
 
 #* Risk Summary
+#* @get /risk.summary
+#* @post /risk.summary
 #* @param data_name The template data name
 #* @param Raw_Ind
-#* @get /risk.summary
+
 function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1) {
     #attach(file.path("..","data",data))
     risk.summary(data.frame(ID=id,
