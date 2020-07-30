@@ -7,7 +7,7 @@ cors <- function(res) {
 
 #' @get /ohai
 function(req){
-    list("ohai - you made it")
+    list("ohai - version 1.0.5 with proj_age default at 90")
 }
 
 #' Absolute Risk
@@ -15,6 +15,7 @@ function(req){
 #' @get /absolute.risk
 #' @param id
 #' @param age
+#' @param proj_age
 #' @param biopsies
 #' @param hyperplasia
 #' @param menstruation
@@ -24,12 +25,11 @@ function(req){
 #' @param Raw_Ind
 #' @param Avg_white
 
-#' all params need to be there or bad result
-function(req, age=35, biopsies=1, hyperplasia=1, menstruation=1, first_birth=1, relatives=1, race=1, Raw_Ind=1, Avg_White=1) {
+function(req, age=39, proj_age=90,  biopsies=1, hyperplasia=1, menstruation=1, first_birth=1, relatives=1, race=1, Raw_Ind=1, Avg_White=0) {
     cat(" age::", age, biopsies, hyperplasia, menstruation, first_birth, relatives, race, Raw_Ind, Avg_White)
     absolute.risk(data.frame(ID=1,
                              T1=as.numeric(age),
-                             T2=as.numeric(age)+5,
+                             T2=as.numeric(proj_age),
                              N_Biop=as.integer(biopsies),
                              HypPlas=ifelse(as.integer(biopsies) == 0 |
                                               as.integer(biopsies) == 99,
@@ -45,6 +45,7 @@ function(req, age=35, biopsies=1, hyperplasia=1, menstruation=1, first_birth=1, 
 #* @post /relative.risk
 #* @param id
 #* @param age
+#* @param proj_age
 #* @param biopsies
 #* @param hyperplasia
 #* @param menstruation
@@ -53,10 +54,10 @@ function(req, age=35, biopsies=1, hyperplasia=1, menstruation=1, first_birth=1, 
 #* @param race
 #* @param Raw_Ind
 
-function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1) {
+function(id=0, age=35, proj_age=90, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1) {
     input_df <- data.frame(ID=id,
                              T1=as.numeric(age),
-                             T2=as.numeric(age)+5,
+                             T2=as.numeric(proj_age),
                              N_Biop=as.integer(biopsies),
                              HypPlas=ifelse(as.integer(biopsies) == 0 |
                                               as.integer(biopsies) == 99,
@@ -73,14 +74,24 @@ function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=2
 #* Check Summary
 #* @get /check.summary
 #* @post /check.summary
-#* @param data_name The template data name
+#' @param id
+#' @param age
+#' @param proj_age
+#' @param biopsies
+#' @param hyperplasia
+#' @param menstruation
+#' @param first_birth
+#' @param relatives
+#' @param race
+#' @param Raw_Ind
+#' @param Avg_white
 #* @param Raw_Ind
 #* @param Avg_white
 
-function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1, Avg_White=0) {
+function(id=0, age=35, proj_age=90, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1, Avg_White=0) {
     check.summary(data.frame(ID=id,
                              T1=as.numeric(age),
-                             T2=as.numeric(age)+5,
+                             T2=as.numeric(proj_age),
                              N_Biop=as.integer(biopsies),
                              HypPlas=ifelse(as.integer(biopsies) == 0 |
                                               as.integer(biopsies) == 99,
@@ -95,14 +106,23 @@ function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=2
 #* Risk Summary
 #* @get /risk.summary
 #* @post /risk.summary
-#* @param data_name The template data name
+#' @param id
+#' @param age
+#' @param proj_age
+#' @param biopsies
+#' @param hyperplasia
+#' @param menstruation
+#' @param first_birth
+#' @param relatives
+#' @param race
+#' @param Raw_Ind
+#' @param Avg_white
 #* @param Raw_Ind
 
-function(id=0, age=35, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1) {
-    #attach(file.path("..","data",data))
+function(id=0, age=35, proj_age=90, biopsies=0, hyperplasia=0, menstruation=16, first_birth=22, relatives=0, race=1, Raw_Ind=1) {
     risk.summary(data.frame(ID=id,
                             T1=as.numeric(age),
-                            T2=as.numeric(age)+5,
+                            T2=as.numeric(proj_age),
                             N_Biop=as.integer(biopsies),
                             HypPlas=ifelse(as.integer(biopsies) == 0 |
                                              as.integer(biopsies) == 99,

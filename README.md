@@ -1,6 +1,7 @@
 # Absolute Risk Plumber Runner
 
 This example runs the [plumber.io](https://www.rplumber.io/) package and loads an api for `absolute.risk`, `relative.risk`, `check.summary`, `risk.summary`.
+Running at https://dashboard.heroku.com/apps/limitless-eyrie-26993
 
 ## Steps
 
@@ -24,6 +25,7 @@ This example runs the [plumber.io](https://www.rplumber.io/) package and loads a
   
   
   `make run` to run locally docker desktop must be running  
+  `make stop` stop local before running again 
   note: should throw error for missing params instead of defaults
 
 
